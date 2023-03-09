@@ -15,8 +15,17 @@
  app.post("/hello", (req, res) => {
     console.log(`/hello endpoint was hit. Sending a response`);
     res.send('Hello hello, my friend');
-    console.log(`Response send .....`);
+    console.log(`Response send.....`);
  });
+
+let count = 0;
+app.post("/counters", (req, res) => {
+     ++count;
+     res.send(`Current count is ${count}.`);
+});
+
+
+
 
  app.listen(port, () => {
     console.log(`Trial-API listening on port ${port} was started successfully`);
