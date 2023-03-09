@@ -1,0 +1,14 @@
+{
+  "name": "trial-api",
+  "version": "1.0.0",
+  "description": "Trial express api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jr Tableza",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
