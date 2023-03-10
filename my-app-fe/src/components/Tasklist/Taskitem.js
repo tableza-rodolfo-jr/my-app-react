@@ -1,31 +1,48 @@
 // import 
-import TaskLogo from "./high-prio.webp";
+import React from "react";
+import { getAvatar, log, getPriorityBadge } from "./TaskHelper";
+
 //function
 const styles = {
     avatarImg: {width: '55px', height: 'auto'}
 }
 
 
- function Taskitem() {
+ function Taskitem({ task, index, completeorRestoreTask, deleteTask }) {
     return(
         <tr className="fw-normal">
         <th>
-          <img src={TaskLogo}
+          <img src={getAvatar()}
             className="shadow-1-strong rounded-circle" alt="avatar 1"
-            // style="width: 55px; height: auto;"
+            
             style={styles.avatarImg} />
-          <span className="ms-2">Alice Mayer</span>
+          
+          <span className={`ms-2 ${task.completed ? 'text-decoration-line-through' : ''
+        }  ${task.completed ? 'text-danger' : ''} `}>
+            
+            {task.name}</span>
         </th>
-        <td className="align-middle">
-              <span>Call Sam For payments</span>
+      
+        <td className={`align-middle ${
+            task.completed ? 'text-decoration-line-through' : ''
+            } ${task.completed ? 'text-danger' : ''} `}>
+              <span>{task.description}</span>
         </td>
            <td className="align-middle">
-          <h6 className="mb-0"><span className="badge bg-danger">High priority</span></h6>
+          <h6 className="mb-0">
+            {getPriorityBadge(task.priority, task.completed)}
+            </h6>
         </td>
         <td className="align-middle">
-          <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
-              className="fas fa-check text-success me-3"></i></a>
-          <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
+          <a href="#!" 
+          data-mdb-toggle="tooltip" 
+          title="Mark task as complete" 
+          onClick={() => completeorRestoreTask(index, task.completed) }
+          >
+          
+            <i className={`me-3 fas fa-${task.completed ? 'ban text-warning' : 'check text-success'}`}></i></a>
+          <a href="#!" data-mdb-toggle="tooltip" title="Delete Current Task" 
+          onClick={() => deleteTask(index)}><i
               className="fas fa-trash-alt text-danger"></i></a>
         </td>
       </tr>
