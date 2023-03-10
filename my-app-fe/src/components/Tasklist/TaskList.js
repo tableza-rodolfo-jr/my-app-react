@@ -50,6 +50,25 @@ const styles = {
       setTasks(newTasks);
     };
 
+    const addTask = value => {
+     console.log(`parent is working`);
+    const newTasks = [...tasks];
+    newTasks.push({
+      avatar: '',
+      name: "Zane Tableza",
+      description: value,
+      priority: "high",
+      completed: false,
+
+    });
+    setTasks(newTasks);
+    };
+
+
+
+
+
+
     return (
        <section className="vh-100" style={styles.body}>
     <div className="container py-5 h-100">
@@ -89,7 +108,9 @@ const styles = {
   
             </div>
             <div className="card-footer text-end p-3">
-                <TaskCreate />
+                <TaskCreate 
+                 addTask={addTask}
+                />
             </div>
           </div>
   
